@@ -74,7 +74,7 @@ class Subcribe extends Component {
     const { name, email, errors } = this.state;
 
     return (
-      <FormContainer onSubmit={this.handleSubmit}>
+      <FormContainer onSubmit={this.handleSubmit} netlify>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
