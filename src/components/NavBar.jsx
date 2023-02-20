@@ -1,5 +1,5 @@
 import React from 'react'
-// import Box, { BoxProps } from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
