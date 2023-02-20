@@ -11,7 +11,7 @@ const SubmitButton = styled(Button)({
   margin: '24px 0px 16px',
 });
 
-class SubscriptionForm extends Component {
+class Subcribe extends Component {
   constructor(props) {
     super(props);
 
@@ -115,4 +115,4 @@ class SubscriptionForm extends Component {
   }
 }
 
-export default SubscriptionForm;
+export default Subcribe;
