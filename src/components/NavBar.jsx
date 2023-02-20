@@ -1,100 +1,38 @@
 import React from 'react'
 import Box, { BoxProps } from '@mui/material/Box';
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 
-function Item(props) {
-    const { sx, ...other } = props;
+
+function NavItem(props) {
+    const { children, ...other } = props;
+    return (
+      <Box sx={{ p: 1, m: 1 }}>
+        <IconButton {...other}>{children}</IconButton>
+      </Box>
+    );
+  }
+  
+  export default function NavBar() {
     return (
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
           p: 1,
-          m: 1,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'grey.100'),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
-          border: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-          borderRadius: 2,
-          fontSize: '0.875rem',
-          fontWeight: '700',
-          ...sx,
+          bgcolor: "primary.main"
         }}
-        {...other}
-      />
+      >
+        <NavItem>
+          <MenuIcon sx={{ color: "common.white" }} />
+        </NavItem>
+        <NavItem>
+          <SearchIcon sx={{ color: "common.white" }} />
+        </NavItem>
+      </Box>
     );
   }
-
-class NavBar extends React.Component {
-    render() {
-        return (
-            <div className='main'>
-            {/* TODO: Jeff to add icon and look into hambuger menu? */}
-
-            <div style={{ width: '100%' }}>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          flexDirection: 'column',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column-reverse',
-          alignItems: 'flex-start',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-        <Item>Item 1</Item>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>
-      </Box>
-    </div>
-
-            {/* EOF DIV */}
-            
-            </div>
-        )
-    }
-}
-
-export default NavBar;
+  
