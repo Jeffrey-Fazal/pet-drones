@@ -11,7 +11,7 @@ const SubmitButton = styled(Button)({
   margin: '24px 0px 16px',
 });
 
-class Subcribe extends Component {
+class Subscribe extends Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ class Subcribe extends Component {
       name: '',
       email: '',
       emailError: false,
-      errors: {}
+      errors: {},
     };
   }
 
@@ -42,9 +42,21 @@ class Subcribe extends Component {
       return;
     }
 
-    console.log(this.state.name, this.state.email);
+    const { name, email } = this.state;
 
-    // TODO: Integrate with Mailchimp API
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'subscribe', name, email }),
+    })
+      .then(() => {
+        alert('Thanks for subscribing!');
+        this.setState({ name: '', email: '', emailError: false, errors: {} });
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Oops! Something went wrong. Please try again later.');
+      });
   };
 
   validateForm = () => {
@@ -110,9 +122,16 @@ class Subcribe extends Component {
         <SubmitButton type="submit" fullWidth variant="contained" color="primary">
           Subscribe
         </SubmitButton>
+        <input type="hidden" name="form-name" value="subscribe" />
       </FormContainer>
     );
   }
 }
 
-export default Subcribe;
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
+
+export default Subscribe;
