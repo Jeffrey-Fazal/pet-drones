@@ -1,7 +1,6 @@
 // src/Form.js
-import './form.css'
 
-export default function Form() {
+export default function FormNet() {
   return (
     <form 
       method='POST' 

@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 import CommunityArticles from './CommunityArticles';
 import Header from './Header';
 import SalesBar from './SalesBar';
-import Form from '../form';
+import FormNet from '../form';
 
 class Home extends React.Component {
     render() {
@@ -15,7 +15,7 @@ class Home extends React.Component {
                 <Header />
                 <NavBar />
                 {/* <Subscribe /> */}
-                <Form />
+                <FormNet />
                 <h2>Community Articles</h2>
                 <CommunityArticles />
                 <SalesBar />
@@ -26,6 +26,5 @@ class Home extends React.Component {
         )
     }
 }
-import Form from '../form';
 
 export default Home;
