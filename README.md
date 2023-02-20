@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Drone Pets Newsletter Signup Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created by Patrick Fergurson, Vincent Choi, and Jeffrey Fazal over the course of two days. The goal of the project was to create a site that would demonstrate to users how an accessible and easy-to-use site can be made for newsletter signups. The theme of the site is drone pets.
+Overview
 
-## Available Scripts
+The Drone Pets Newsletter Signup Site is a single-page site that allows users to sign up for a newsletter related to drone pets. The site is designed to be easy to use and accessible to all users, regardless of their level of technical expertise or physical abilities.
 
-In the project directory, you can run:
+The site includes a simple form that users can fill out to sign up for the newsletter. The form includes fields for the user's name and email address. The form is designed to be easy to use and accessible to all users, including those who may use screen readers or other assistive technologies.
+Technology Used
 
-### `npm start`
+The Drone Pets Newsletter Signup Site was created using React and the Material-UI library. The site was built using the Bootstrap framework, which allowed us to create a responsive design that works well on both desktop and mobile devices.
+Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# To build the Drone Pets Newsletter Signup Site, you'll need to clone the project's GitHub repository to your local machine:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
 
-### `npm test`
+git clone https://github.com/Jeffrey-Fazal/pet-drones/
+```
+Then navigate into the project's directory:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
 
-### `npm run build`
+cd pet-drones
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Next, you'll need to install the project's dependencies using NPM:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once the dependencies have been installed, you can build the project:
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+npm run build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
 
-## Learn More
+Finally, you can start the project:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm start
 
-### Code Splitting
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This will start the development server and open the site in your default browser.
 
-### Analyzing the Bundle Size
+# Contributions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+We welcome contributions to this project. If you would like to contribute, please fork this repository and create a new branch for your changes. Once you have made your changes, submit a pull request and we will review your changes.
+Credits
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project was created by Patrick Fergurson, Vincent Choi, and Jeffrey Fazal. The theme of the site was inspired by our shared interest in drones and pets
