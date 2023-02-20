@@ -2,10 +2,11 @@ import React from 'react'
 // import ScreenThree from './ScreenThree';
 // import ThankyouPage from './ThankyouPage';
 import NavBar from './NavBar';
-import Subscribe from './Subscribe';
+// import Subscribe from './Subscribe';
 import CommunityArticles from './CommunityArticles';
 import Header from './Header';
 import SalesBar from './SalesBar';
+import Form from '../form';
 
 class Home extends React.Component {
     render() {
@@ -13,7 +14,8 @@ class Home extends React.Component {
             <div className='main'>
                 <Header />
                 <NavBar />
-                <Subscribe />
+                {/* <Subscribe /> */}
+                <Form />
                 <h2>Community Articles</h2>
                 <CommunityArticles />
                 <SalesBar />
@@ -24,5 +26,6 @@ class Home extends React.Component {
         )
     }
 }
+import Form from '../form';
 
 export default Home;
