@@ -4,7 +4,8 @@ import React from 'react'
 import NavBar from './NavBar';
 import Subscribe from './Subscribe';
 import CommunityArticles from './CommunityArticles';
-import Header from './Header'
+import Header from './Header';
+import SalesBar from './SalesBar';
 
 class Home extends React.Component {
     render() {
@@ -15,6 +16,7 @@ class Home extends React.Component {
                 <Subscribe />
                 <h2>Community Articles</h2>
                 <CommunityArticles />
+                <SalesBar />
                 {/* Figure out a way to use logic to present these when neeeded
                 <ThankyouPage />
                 <ScreenThree /> */}
