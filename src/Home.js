@@ -3,6 +3,7 @@ import ScreenThree from './components/ScreenThree';
 import ThankyouPage from './components/ThankyouPage';
 import CommunityArticles from './components/CommunityArticles';
 import NavBar from './components/NavBar';
+import Subscribe from './components/Subscribe';
 
 class Home extends React.Component {
     render() {
