@@ -1,137 +1,62 @@
-import React, { Component } from 'react';
-import { Button, TextField, Grid } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import React, { useState } from "react";
 
-const FormContainer = styled('form')({
-  width: '100%',
-  marginTop: 8,
-});
+const ContactForm = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-const SubmitButton = styled(Button)({
-  margin: '24px 0px 16px',
-});
-
-class Subscribe extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      email: '',
-      emailError: false,
-      errors: {},
-    };
-  }
-
-  handleNameChange = (event) => {
-    this.setState({ name: event.target.value });
-  };
-
-  handleEmailChange = (event) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailRegex.test(event.target.value);
-    this.setState({ email: event.target.value, emailError: !isValidEmail });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const errors = this.validateForm();
-    if (Object.keys(errors).length > 0) {
-      this.setState({ errors });
-      return;
-    }
-
-    const { name, email } = this.state;
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({ 'form-name': 'subscribe', name, email }),
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString(),
     })
-      .then(() => {
-        alert('Thanks for subscribing!');
-        this.setState({ name: '', email: '', emailError: false, errors: {} });
-      })
-      .catch((error) => {
-        console.error(error);
-        alert('Oops! Something went wrong. Please try again later.');
-      });
+      .then(() => alert("Success!"))
+      .catch((error) => alert(error));
   };
 
-  validateForm = () => {
-    const errors = {};
-    const { name, email } = this.state;
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="hidden" name="form-name" value="contact" />
+      <p>
+        <label>
+          Your Name:{" "}
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+      </p>
+      <p>
+        <label>
+          Your Email:{" "}
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+      </p>
+      <p>
+        <label>
+          Message:{" "}
+          <textarea
+            name="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
+  );
+};
 
-    if (!name) {
-      errors.name = 'Please enter your preferred name.';
-    }
-
-    if (!email) {
-      errors.email = 'Please enter your email address.';
-    } else if (!this.isValidEmail(email)) {
-      errors.email = 'Please enter a valid email address.';
-    }
-
-    return errors;
-  };
-
-  isValidEmail = (email) => {
-    // This is a simple email validation regex. It does not catch all edge cases.
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  render() {
-    const { name, email, errors } = this.state;
-
-    return (
-      <FormContainer onSubmit={this.handleSubmit} netlify>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="name"
-              label="Preferred Name"
-              name="name"
-              value={name}
-              onChange={this.handleNameChange}
-              error={errors.name ? true : false}
-              helperText={errors.name}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
-              onChange={this.handleEmailChange}
-              error={this.state.emailError || errors.email ? true : false}
-              helperText={
-                this.state.emailError ? 'Please enter a valid email address.' : errors.email
-              }
-            />
-          </Grid>
-        </Grid>
-        <SubmitButton type="submit" fullWidth variant="contained" color="primary">
-          Subscribe
-        </SubmitButton>
-        <input type="hidden" name="form-name" value="subscribe" />
-      </FormContainer>
-    );
-  }
-}
-
-function encode(data) {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
-}
-
-export default Subscribe;
+export default ContactForm;
