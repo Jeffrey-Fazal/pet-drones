@@ -1,118 +1,84 @@
-import React, { Component } from 'react';
-import { Button, TextField, Grid } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import React, { useState } from 'react';
 
-const FormContainer = styled('form')({
-  width: '100%',
-  marginTop: 8,
-});
+const Subscribe = () => {
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
-const SubmitButton = styled(Button)({
-  margin: '24px 0px 16px',
-});
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-class Subcribe extends Component {
-  constructor(props) {
-    super(props);
+    // assemble the form data
+    const formData = new FormData();
+    formData.append('EMAIL', email);
+    formData.append('MERGE1', firstName);
+    formData.append('MERGE2', lastName);
 
-    this.state = {
-      name: '',
-      email: '',
-      emailError: false,
-      errors: {}
-    };
-  }
+    // submit the form data to Mailchimp
+    const response = await fetch('https://gmail.us8.list-manage.com/subscribe/post?u=a062e96fae17da3a6604394b2&id=10a22853b8', {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors'
+    });
 
-  handleNameChange = (event) => {
-    this.setState({ name: event.target.value });
+    // handle the response
+    const responseBody = await response.text();
+    console.log(responseBody);
   };
 
-  handleEmailChange = (event) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailRegex.test(event.target.value);
-    this.setState({ email: event.target.value, emailError: !isValidEmail });
-  };
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <h3 className="form-title">Join our email list for future updates.</h3>
+      <div className="container">
+        <div className="form-field">
+          <label className="label" htmlFor="first-name-input">
+            First Name
+          </label>
+          <input
+            id="first-name-input"
+            className="form-input"
+            type="text"
+            placeholder="Jane"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-field">
+          <label className="label" htmlFor="last-name-input">
+            Last Name
+          </label>
+          <input
+            id="last-name-input"
+            className="form-input"
+            type="text"
+            placeholder="Doe"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-field">
+          <label className="label" htmlFor="email-input">
+            Email
+          </label>
+          <input
+            id="email-input"
+            className="form-input"
+            type="email"
+            placeholder="your@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+      </div>
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+      <button className="submit-button" type="submit">
+        Subscribe
+      </button>
+    </form>
+  );
+};
 
-    const errors = this.validateForm();
-    if (Object.keys(errors).length > 0) {
-      this.setState({ errors });
-      return;
-    }
-
-    console.log(this.state.name, this.state.email);
-
-    // TODO: Integrate with Mailchimp API
-  };
-
-  validateForm = () => {
-    const errors = {};
-    const { name, email } = this.state;
-
-    if (!name) {
-      errors.name = 'Please enter your preferred name.';
-    }
-
-    if (!email) {
-      errors.email = 'Please enter your email address.';
-    } else if (!this.isValidEmail(email)) {
-      errors.email = 'Please enter a valid email address.';
-    }
-
-    return errors;
-  };
-
-  isValidEmail = (email) => {
-    // This is a simple email validation regex. It does not catch all edge cases.
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  render() {
-    const { name, email, errors } = this.state;
-
-    return (
-      <FormContainer onSubmit={this.handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="name"
-              label="Preferred Name"
-              name="name"
-              value={name}
-              onChange={this.handleNameChange}
-              error={errors.name ? true : false}
-              helperText={errors.name}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
-              onChange={this.handleEmailChange}
-              error={this.state.emailError || errors.email ? true : false}
-              helperText={
-                this.state.emailError ? 'Please enter a valid email address.' : errors.email
-              }
-            />
-          </Grid>
-        </Grid>
-        <SubmitButton type="submit" fullWidth variant="contained" color="primary">
-          Subscribe
-        </SubmitButton>
-      </FormContainer>
-    );
-  }
-}
-
-export default Subcribe;
+export default Subscribe;
